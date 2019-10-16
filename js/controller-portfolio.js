@@ -3,8 +3,6 @@
 
 $(document).ready(function () {
     renderPortfolioItems()
-    // renderModal()
-
 })
 
 function renderPortfolioItems() {
@@ -12,7 +10,7 @@ function renderPortfolioItems() {
     var currImg = 1
     var $elItemContainer = $('.items-container')
     var strHTMLs = items.map(function (item) {
-        return `<div class="col-md-4 col-sm-6 portfolio-item" onClick="renderModal(${item.id})"><a class="portfolio-link" data-toggle="modal" href="#portfolioModal">
+        return `<div class="col-md-4 col-sm-6 portfolio-item" onClick="renderModalsInfo(${item.id})"><a class="portfolio-link" data-toggle="modal" href="#portfolioModal">
          <div class="portfolio-hover">
            <div class="portfolio-hover-content">
              <i class="fa fa-plus fa-3x"></i>
@@ -29,12 +27,11 @@ function renderPortfolioItems() {
     $elItemContainer.html(strHTMLs.join(''))
 }
 
-function renderModal(itemId) {
+function renderModalsInfo(itemId) {
     var items = getItems()
-    var itemIdx = items.findIndex(function(item){
+    var item = items.find(function(item){
         return item.id === itemId
     })
-    var item = items[itemIdx]
     $('.item-name').text(item.name)  
     $('.item-intro').text(item.intro)  
     $('.item-img').attr('src',item.imgUrl)  
